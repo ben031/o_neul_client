@@ -26,6 +26,8 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
   const [selectedDiaryId, setSelectedDiaryId] = useState(0);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
+  // 비 로그인시, 퍼블릭 다이어리 정보 fetch
+  // 로그인시, 퍼블릭 및 개인 다이어리 정보 fetch
   useEffect(() => {
     fetchAxios(userInfo)
       .then((result) => {
@@ -44,14 +46,16 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
       });
   }, []);
 
+  //
   useEffect(() => {
     if (clickmoment !== null) {
-      return setIsClick((prev) => setIsClick(!prev));
+      return setIsClick(true);
     }
   }, [clickmoment]);
 
-  const closeDiaryModal = useCallback(() => {
-    setIsClick((prev) => setIsClick(!prev));
+  const changeModalState = useCallback(() => {
+    setIsClick((prev) => !prev);
+    setClickmoment(null);
   }, [setIsClick]);
 
   const momentHandler = useCallback(
@@ -68,20 +72,20 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
     [setSelectedDiaryId]
   );
 
-  const next = useCallback(() => {
+  const next = () => {
     setValue(value.add(1, "month").clone());
-  }, [value]);
+  };
 
-  const before = useCallback(() => {
+  const before = () => {
     setValue(value.subtract(1, "month").clone());
-  }, [value]);
+  };
 
   return (
     <>
       {isClick && (
         <Diary
           clickmoment={clickmoment}
-          closeDiaryModal={closeDiaryModal}
+          closeDiaryModal={changeModalState}
           selectedDiaryId={selectedDiaryId}
           passDiaryId={passDiaryId}
         />
@@ -100,7 +104,7 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
                 setDeleteLoading={setDeleteLoading}
               />
               <OtherCards
-                closeDiaryModal={closeDiaryModal}
+                closeDiaryModal={changeModalState}
                 passDiaryId={passDiaryId}
               />
             </DiaryWrapper>

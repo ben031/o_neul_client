@@ -15,7 +15,7 @@ const DiaryHeader = ({
   whatEmoji,
   weatherData,
   weatherChosen,
-  setWeatherChosen,
+  isEditing,
 }) => {
   const emojiModalHandler = React.useCallback(() => {
     emojiModalOnOff();
@@ -24,13 +24,19 @@ const DiaryHeader = ({
   return (
     <Header className="header">
       <HeaderDate className="date">
-        <span> {clickmoment.format("LL dddd")}</span>
+        <span> {clickmoment && clickmoment.format("LL dddd")}</span>
       </HeaderDate>
 
       <HeaderEmoji className="emoji">
         <FontAwesomeIcon
           icon={emojiChosen ? emojiChosen.emoji : farSmile}
-          onClick={emojiModalHandler}
+          onClick={() => {
+            if (isEditing) {
+              emojiModalHandler();
+            } else {
+              return;
+            }
+          }}
           style={{
             fontSize: 40,
             cursor: "pointer",
@@ -46,7 +52,11 @@ const DiaryHeader = ({
       </HeaderEmoji>
 
       <HeaderWeather className="weather">
-        <WeatherModal weatherData={weatherData} weatherChosen={weatherChosen} />
+        <WeatherModal
+          weatherData={weatherData}
+          weatherChosen={weatherChosen}
+          isEditing={isEditing}
+        />
       </HeaderWeather>
 
       <button className="music_btn" onClick={musicModalOnOff}>
