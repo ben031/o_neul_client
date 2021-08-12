@@ -34,17 +34,16 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  width:100%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  
+
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 `;
-
 
 export const ContentTitle = styled.div`
   width: 25vmax;
@@ -52,17 +51,17 @@ export const ContentTitle = styled.div`
   font-size: 4rem;
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   @media screen and (max-width: 768px) {
     font-size: 3rem;
   }
 `;
 
 export const UserInfoForm = styled.div`
-width: 50%;
+  width: 50%;
   height: 100vh;
   border: 2px solid var(--primary-color);
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,20 +72,20 @@ width: 50%;
   @media screen and (max-width: 768px) {
     width: 37vmax;
     height: 75%;
-    box-shadow: 2px 5px 5px #D3CCDB;
+    box-shadow: 2px 5px 5px #d3ccdb;
     flex-direction: column;
     position: absolute;
     left: 10.5vmax;
     top: 11.045rem;
   }
-  box-shadow: 1px 5px 5px #D3CCDB;
+  box-shadow: 1px 5px 5px #d3ccdb;
 `;
 
 export const Frame = styled.div`
   width: 95%;
   height: 95%;
-  border: .5rem groove #99C5FF;
-  border-radius: .7rem;
+  border: 0.5rem groove #99c5ff;
+  border-radius: 0.7rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,32 +93,32 @@ export const Frame = styled.div`
 `;
 
 export const UserContentForm = styled.div`
-width: 100%;
-height: 100vh;
-border: 2px solid var(--primary-color);
-border-radius: .7rem;
-display: block;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color: #fff;
-padding-top: 1.5em;
-margin-left: 2rem;
-box-shadow: 10px 5px 5px #D3CCDB;
-
-@media screen and (max-width: 1024px) {
-  width: 35vmax;
-  top: 2rem;
-}
-@media screen and (max-width: 930px) {
-  width: 35vmax;
-}
-@media screen and (max-width: 768px) {
   width: 100%;
-  height: 75%;
-  margin-top: 1.8rem;
-  margin-left: 1.8rem;
-}
+  height: 100vh;
+  border: 2px solid var(--primary-color);
+  border-radius: 0.7rem;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 1.5em;
+  margin-left: 2rem;
+  box-shadow: 10px 5px 5px #d3ccdb;
+
+  @media screen and (max-width: 1024px) {
+    width: 35vmax;
+    top: 2rem;
+  }
+  @media screen and (max-width: 930px) {
+    width: 35vmax;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 75%;
+    margin-top: 1.8rem;
+    margin-left: 1.8rem;
+  }
 `;
 
 export const Info = styled.div`
@@ -130,10 +129,10 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-item: center;
-  border-bottom: 3px groove #99C5FF;
-  corlor: #000;
-  
+  align-items: center;
+  border-bottom: 3px groove #99c5ff;
+  color: #000;
+
   @media screen and (max-width: 1024px) {
     font-size: 2rem;
   }
@@ -143,15 +142,15 @@ export const Info = styled.div`
 `;
 
 export const Input = styled.input`
-font-family: var(--thick-font);
+  font-family: var(--thick-font);
   font-size: 1.8rem;
   border: none;
-  border-bottom:  3px groove #99C5FF;
+  border-bottom: 3px groove #99c5ff;
   width: 22rem;
   margin-top: 2rem;
   padding-left: 1rem;
   display: flex;
-  background-color: #FFFBF0;
+  background-color: #fffbf0;
 
   &:focus {
     color: none;
@@ -168,28 +167,28 @@ font-family: var(--thick-font);
 `;
 
 export const Button = styled.button`
-font-family: var(--thick-font);
-font-size: 1.4rem;
-font-weight: 500;
-width: 12rem;
-height: 2.5rem;
-background-color: #5999FF;
-color: #fff;
-padding: .5rem;
-margin: 1rem 0;
-border: none;
-border-radius: .7rem;
+  font-family: var(--thick-font);
+  font-size: 1.4rem;
+  font-weight: 500;
+  width: 12rem;
+  height: 2.5rem;
+  background-color: #5999ff;
+  color: #fff;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 0.7rem;
 
-&:hover {
-  background: #1C82FF;
-}
+  &:hover {
+    background: #1c82ff;
+  }
 
-@media screen and (max-width: 1024px) {
-  width: 8rem;
-  font-size: 1rem;
-}
-@media screen and (max-width: 768px) {
-  width: 8rem;
-  font-size: .8rem;
-}
+  @media screen and (max-width: 1024px) {
+    width: 8rem;
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 768px) {
+    width: 8rem;
+    font-size: 0.8rem;
+  }
 `;

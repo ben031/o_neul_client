@@ -100,31 +100,6 @@ const Music = ({
     setFiltered(musicList.musicList);
   };
 
-  // useEffect(() => {
-  //   //개인 서버에서 정보 불러올 때 쓰는 함수
-  //   getGenreHandler();
-  // }, []);
-
-  // const getGenreHandler = async () => {
-  //   //개인 서버에서 정보 불러올 때 쓰는 함수
-  //   return await axios
-  //     .get("http://localhost:4000/genre", {
-  //       headers: { "content-type": "application/json", withCredentials: true },
-  //     })
-  //     .then((data) => {
-  //       //data === musics 배열인셈
-  //       let dataLists = genreKinds(data.data); //dataLists에 장르만 추출
-  //       console.log("뮤직리스츠", data.data);
-  //       setGenreList(dataLists);
-  //       setMusicLists(data.data);
-  //       setFiltered(data.data);
-  //       // console.log("받아온 데이터", data.data);
-  //     })
-  //     .catch((err) => {
-  //       alert("장르를 받아오지 못헀습니다");
-  //     });
-  // };
-
   const genreKinds = (data) => {
     //장르 종류 추출해서 셀렉트바에 보내줘야함
     let kinds = [];

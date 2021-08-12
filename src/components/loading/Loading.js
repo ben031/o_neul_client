@@ -14,7 +14,6 @@ const Loading = ({ login }) => {
 
     if (link.indexOf("?") !== -1) {
       const query = link.split("?")[1].split("&");
-      // setLoading(true);
 
       let state, code;
       if (query[0].slice(0, 5) === "state") {
@@ -53,7 +52,6 @@ const Loading = ({ login }) => {
 };
 const Background = styled.div`
   display: flex;
-
   justify-content: center;
   align-items: center;
   position: fixed;

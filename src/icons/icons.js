@@ -24,14 +24,6 @@ import {
 import { Icon } from "react-icons-kit";
 
 import {
-  weatherSunny,
-  weatherCloudy,
-  weatherPartlySunny,
-  weatherShower,
-  weatherSnow,
-} from "react-icons-kit/typicons/";
-
-import {
   iosSunnyOutline,
   iosPartlysunnyOutline,
   iosCloudyOutline,
