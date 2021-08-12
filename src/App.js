@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./components/landing/Landing";
 import Main from "./components/main/Main";
@@ -8,6 +8,7 @@ import Mypage from "./components/mypage/Mypage";
 import axios from "axios";
 import { connect } from "react-redux";
 import { login } from "./actions";
+import PropTypes from "prop-types";
 
 function App({ login }) {
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,6 @@ function App({ login }) {
       ) : (
         <Switch>
           <Route path="/" exact>
-            {/* <LoadingModal /> */}
             <Landing />
           </Route>
           <Route path="/main">
@@ -59,6 +59,10 @@ const mapStateToProps = ({ loginReducer }) => {
   return {
     userLogin: loginReducer,
   };
+};
+
+App.prototype = {
+  login: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, { login })(App);

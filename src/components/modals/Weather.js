@@ -11,15 +11,6 @@ import {
   iosSnowy,
 } from "react-icons-kit/ionicons/";
 
-// const weathers = [
-//   {
-//     id: 0,
-//     weather: (
-//       <Icon icon={weatherSunny} size={30} style={{ color: "#c6d6df" }} />
-//     ),
-//   },
-// ];
-
 const weathers = [
   { id: 1, weather: iosSunnyOutline, color: "#e32119" },
   { id: 2, weather: iosPartlysunnyOutline, color: "#ff8a00" },
@@ -34,9 +25,10 @@ const WeatherModal = ({
   isEditing,
   weatherChosen,
 }) => {
-  useEffect(() => {
-    weatherData(selectedWeatherId);
-  }, [isEditing === false]);
+  // useEffect(() => {
+  //   console.log(":::::::::::::::::");
+  //   weatherData(selectedWeatherId);
+  // }, [isEditing === false]);
 
   const weatherClickHandler = React.useCallback(
     (id) => {
@@ -44,8 +36,8 @@ const WeatherModal = ({
     },
     [weatherData]
   );
-
-  if (selectedWeatherId && isEditing === false) {
+  console.log(weatherChosen, isEditing);
+  if (weatherChosen && isEditing === false) {
     return (
       <>
         <div
@@ -62,7 +54,7 @@ const WeatherModal = ({
                   key={uniqueId()}
                   id={weather.id}
                   color={weather.color}
-                  selectedWeatherId={selectedWeatherId}
+                  selectedWeatherId={weatherChosen}
                 >
                   <Icon icon={weather.weather} />
                 </IconWrapperView>
@@ -72,7 +64,7 @@ const WeatherModal = ({
         </div>
       </>
     );
-  } else if (selectedWeatherId && isEditing === true) {
+  } else if (weatherChosen && isEditing === true) {
     return (
       <>
         <div

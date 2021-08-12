@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { flexCenter } from "../../styles/global.style";
 import DiaryWriting from "../modals/DiaryWriting";
@@ -27,11 +27,7 @@ const Diary = ({
   };
 
   const selectedDiary = filterDiary();
-
-  // useEffect(() => {
-  //   console.log(selectedDiary);
-  // });
-
+  console.log(selectedDiaryId);
   return (
     <Diarybackground data-aos={"zoom"} data-aos-duration={"500"}>
       <DiaryWriting
