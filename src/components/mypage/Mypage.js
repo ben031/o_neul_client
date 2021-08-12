@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import Modify from './modify/Modify';
-import MypageHeader from './MypageHeader';
-import ProfileImg from './profile/ProfileImg';
-import '../../styles/mypage/MyDiary.css';
-import DiaryPost from './diary/DiaryPost';
+import Modify from "./modify/Modify";
+import MypageHeader from "./MypageHeader";
+import ProfileImg from "./profile/ProfileImg";
+import "../../styles/mypage/MyDiary.css";
+import DiaryPost from "./diary/DiaryPost";
 import {
   BoxContainer,
   FormContainer,
@@ -17,13 +17,12 @@ import {
   Info,
   Input,
   Button,
-} from '../../styles/mypage/Mypage.style';
+} from "../../styles/mypage/Mypage.style";
 import { connect } from "react-redux";
-import { login, fetchAllLoginDiary } from '../../actions';
-import Diary from '../modals/Diary';
+import { login, fetchAllLoginDiary } from "../../actions";
+import Diary from "../modals/Diary";
 import fetchAxios from "../main/useFetch";
 import AOS from "aos";
-
 
 const Mypage = ({ login, userLogin, userInfo, fetchAllLoginDiary }) => {
   useEffect(() => {
@@ -31,12 +30,12 @@ const Mypage = ({ login, userLogin, userInfo, fetchAllLoginDiary }) => {
   }, []);
   const [users, setUsers] = useState({
     nickname: userLogin.userInfo.nickname,
-    email: userLogin.userInfo.email
+    email: userLogin.userInfo.email,
   });
   const [isClick, setIsClick] = useState(false);
   const [clickmoment, setClickmoment] = useState(null);
   const [selectedDiaryId, setSelectedDiaryId] = useState(0);
-  const [myDiaries, setMyDiaries] = useState(null)
+  const [myDiaries, setMyDiaries] = useState(null);
 
   useEffect(() => {
     fetchAxios(userInfo)
@@ -55,12 +54,12 @@ const Mypage = ({ login, userLogin, userInfo, fetchAllLoginDiary }) => {
 
   useEffect(() => {
     if (clickmoment !== null) {
-      return setIsClick((prev) => setIsClick(!prev));
+      return setIsClick((prev) => !prev);
     }
   }, [clickmoment]);
 
   const closeDiaryModal = () => {
-    setIsClick((prev) => setIsClick(!prev));
+    setIsClick((prev) => !prev);
   };
 
   const momentHandler = (day) => {
@@ -120,7 +119,11 @@ const Mypage = ({ login, userLogin, userInfo, fetchAllLoginDiary }) => {
                 <label for="diary">나의일기</label>
                 <nav>
                   <UserContentForm>
-                    <DiaryPost myDiaries={myDiaries} setMyDiaries={setMyDiaries} modalHandle={momentHandler} />
+                    <DiaryPost
+                      myDiaries={myDiaries}
+                      setMyDiaries={setMyDiaries}
+                      modalHandle={momentHandler}
+                    />
                   </UserContentForm>
                 </nav>
               </div>
@@ -129,13 +132,13 @@ const Mypage = ({ login, userLogin, userInfo, fetchAllLoginDiary }) => {
         </Wrapper>
       </BoxContainer>
     </>
-  )
-}
+  );
+};
 
 const mapStateToProps = ({ loginReducer }) => {
   return {
     userLogin: loginReducer,
-    userInfo: loginReducer
+    userInfo: loginReducer,
   };
 };
 

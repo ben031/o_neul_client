@@ -41,14 +41,7 @@ export default function useForm() {
   };
 
   const onLoginSuccess = (func) => {
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: '✨✨✨ 로그인! ✨✨✨',
-    //   showConfirmButton: false,
-    //   timer: 1500
-    // })
     func((prev) => !prev);
-    // console.log(window.location);
 
     const { pathname } = window.location;
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./components/landing/Landing";
 import Main from "./components/main/Main";
@@ -39,7 +39,6 @@ function App({ login }) {
       ) : (
         <Switch>
           <Route path="/" exact>
-            {/* <LoadingModal /> */}
             <Landing />
           </Route>
           <Route path="/main">

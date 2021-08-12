@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import MyCard from "../../main/cards/card/MyCard";
 import { Link } from "react-router-dom";
-import { Icon } from "react-icons-kit";
-import { pencil } from "react-icons-kit/entypo/pencil";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { flexCenter } from "../../../styles/global.style";

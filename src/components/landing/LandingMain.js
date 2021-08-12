@@ -54,22 +54,6 @@ const LandingMain = () => {
                 </h2>
                 <p>타인의 하루를 보고 공감 버튼을 눌러 보세요 .</p>
               </div>
-              {/* <h2 data-aos={"fade-right"} data-aos-duration={"800"}>
-                음악, 그림이
-                <br />
-                함께하는 일기
-                <br />
-                '오늘' 입니다 .
-              </h2>
-              <p data-aos={"fade-right"} data-aos-duration={"800"}>
-                '오늘' 은 <br />
-                여러분의 기분을 표현해줄 음악을 선정했고 <br />
-                직접 그린 그림과 <br /> 함께 일기를 기록할 수 있습니다. <br />
-                글로 표현할 수 없는 하루를 <br />
-                부드러운 글과 음악 <br />
-                그리고 자유롭게 그린 그림으로 <br />
-                '오늘'에 담아주세요 .
-              </p> */}
             </MainInnerArticle>
             <VideoContainer
               className="video-container"

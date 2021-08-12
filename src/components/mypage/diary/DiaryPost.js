@@ -51,7 +51,3 @@ const mapStateToProps = ({ loginReducer, mainReducer }) => {
 };
 
 export default connect(mapStateToProps)(DiaryPost);
-
-// export default connect(mapStateToProps, {
-//   fetchAllLoginDiary,
-// })(DiaryPost);

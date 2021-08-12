@@ -23,8 +23,6 @@ const TextArea = styled.textarea`
   border: none;
   height: ${(props) => props.textAreaHeight}px;
   resize: none;
-  /* z-index: 1; */
-  /* padding: 2.5rem; */
   border: none;
   font-size: 1.7rem;
   outline: none;
