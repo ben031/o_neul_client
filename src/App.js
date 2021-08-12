@@ -8,7 +8,6 @@ import Mypage from "./components/mypage/Mypage";
 import axios from "axios";
 import { connect } from "react-redux";
 import { login } from "./actions";
-import PropTypes from "prop-types";
 
 function App({ login }) {
   const [loading, setLoading] = useState(false);
@@ -59,10 +58,6 @@ const mapStateToProps = ({ loginReducer }) => {
   return {
     userLogin: loginReducer,
   };
-};
-
-App.prototype = {
-  login: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, { login })(App);
