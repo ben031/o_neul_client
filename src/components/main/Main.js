@@ -27,7 +27,7 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   // 비 로그인시, 퍼블릭 다이어리 정보 fetch
-  // 로그인시, 퍼블릭 및 개인 다이어리 정보 fetch
+  // 로그인시, 퍼블릭 및 개인 다이어리 정보 fetch.
   useEffect(() => {
     fetchAxios(userInfo)
       .then((result) => {
