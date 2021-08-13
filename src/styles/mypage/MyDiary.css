@@ -1,0 +1,112 @@
+#diary {
+  display: none;
+}
+#diary ~ * {
+  position: absolute;
+  transition: transform 0.4s;
+}
+
+#diary:checked ~ * {
+  transform: translate3d(37vmax, 0, 0);
+}
+
+#diary ~ label {
+  font-size: 1.8rem;
+  top: 11rem;
+  left: 50vmax;
+  cursor: pointer;
+  background: #FF75C8;
+  color: #fff;
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 10rem;
+  width: 3rem;
+  text-align: center;
+  padding-top: 1rem;
+  box-shadow: 10px 5px 5px #D3CCDB;
+  /* margin-left: 1rem; */
+  z-index: 1;
+}
+#diary ~ label:hover {
+  background-color: #FFA3D1;
+}
+
+#diary ~ nav {
+  width: 37vmax;
+  left: 11.5vmax;
+  top: 9.045rem;
+}
+
+@media screen and (max-width: 1160px) {
+  #diary:checked ~ * {
+    transform: translate3d(37vmax, 0, 0);
+  }
+  #diary ~ label {
+    left: 51 dvmax;
+  }
+
+  #diary ~ nav {
+    width: 37vmax;
+    left: 11.5vmax;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #diary:checked ~ * {
+    transform: translate3d(37vmax, 0, 0);
+  }
+  #diary ~ label {
+    left: 49vmax;
+  }
+
+  #diary ~ nav {
+    width: 37vmax;
+    left: 12vmax;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  #diary:checked ~ * {
+    transform: translate3d(37vmax, 0, 0);
+  }
+
+  #diary ~ nav {
+    width: 37vmax;
+    left: 12vmax;
+  }
+}
+
+@media screen and (max-width: 949px) {
+  #diary:checked ~ * {
+    transform: translate3d(37vmax, 0, 0);
+  }
+
+  #diary ~ nav {
+    width: 37vmax;
+    left: 12vmax;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #diary ~ label {
+    top: 13rem;
+    left: 50vmax;
+  }
+
+}
+
+@media screen and (max-width: 750px) {
+  #diary:checked ~ * {
+    transform: translate3d(0, 76vmax, 0);
+  }
+  #diary ~ label {
+    top: 15rem;
+    left: 47.5vmax;
+  }
+ 
+  #diary ~ nav {
+    width: 37vmax;
+    left: 8vmax;
+    top: 13.5vmax;
+  }
+}

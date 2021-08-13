@@ -1,0 +1,100 @@
+/*뮤직 버튼*/
+
+.music_btn {
+  position: absolute;
+  top: 4.5rem;
+  right: -3.2rem;
+  padding: 2.5rem 0.5rem;
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+  cursor: pointer;
+  z-index: 200;
+  background-color: #d3c4ae;
+  border: 1px solid rgb(27, 27, 27, 0.2);
+}
+
+.music_btn:active {
+  transform: scale(0.95);
+}
+
+.music_btn_up {
+  display: none;
+  position: absolute;
+  top: -2.85rem;
+  right: 1rem;
+  padding: 0.3rem 2.5rem;
+  border-top-right-radius: 0.7rem;
+  border-top-left-radius: 0.7rem;
+  cursor: pointer;
+  z-index: 200;
+  background-color: #d3c4ae;
+  border: 1px solid rgb(27, 27, 27, 0.2);
+}
+
+.music_btn_up:active {
+  transform: scale(0.95);
+}
+
+@media screen and (max-width: 760px) {
+  .music_btn_up {
+    display: block;
+  }
+  .music_btn {
+    display: none;
+  }
+}
+
+/*뮤직박스*/
+.mainNav {
+  display: flex;
+  position: fixed;
+  z-index: 200;
+  transform: translateY(-90%);
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  top: -10%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+/*footer하단 체크박스*/
+#check_box[type="checkbox"] + label {
+  display: block;
+  margin: 0.2em;
+  cursor: pointer;
+  padding: 0.2em;
+}
+
+#check_box[type="checkbox"] {
+  display: none;
+}
+
+#check_box[type="checkbox"] + label:before {
+  content: "";
+  border: 0.1rem solid #827870;
+  border-radius: 50%;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  vertical-align: center;
+  align-items: center;
+  color: transparent;
+  transition: 0.2s;
+}
+
+#check_box[type="checkbox"] + label:active:before {
+  transform: scale(0);
+}
+
+#check_box[type="checkbox"]:checked + label:before {
+  background-color: #837970;
+  border-color: #837970;
+  color: #fff;
+}
+
+/* 로딩 창*/

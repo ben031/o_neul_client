@@ -1,0 +1,142 @@
+.Loading_wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #716e6d;
+  width: 20rem;
+  height: 20rem;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  border-radius: 2rem;
+}
+
+.text {
+  color: #ecead6;
+  text-align: center;
+  font-family: var(--thick-font);
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  position: relative;
+}
+
+.text:after {
+  position: absolute;
+  content: "";
+  -webkit-animation: Dots 2s cubic-bezier(0, 0.39, 1, 0.68) infinite;
+  animation: Dots 2s cubic-bezier(0, 0.39, 1, 0.68) infinite;
+}
+
+.loader {
+  margin: 5% auto 3rem;
+}
+
+.book {
+  border: 0.4rem solid #ecead6; /*오른쪽 책 테두리*/
+  width: 6rem;
+  height: 4.5rem;
+  position: relative;
+  perspective: 15rem;
+}
+
+.page {
+  display: block;
+  width: 3rem;
+  height: 4.5rem;
+  border: 0.4rem solid #ecead6; /*왼쪽 책 테두리*/
+  border-left: 0.1rem solid #424040; /*1번 색 (책장 가운데 선 넘어가는 책장)*/
+  margin: 0;
+  position: absolute;
+  right: -0.4rem;
+  top: -0.4rem;
+  overflow: hidden;
+  background: #424040; /*1번 색 (책장 가운데 선 넘어가는 책장)*/
+  transform-style: preserve-3d;
+  -webkit-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.book .page:nth-child(1) {
+  -webkit-animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.6s infinite;
+  animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0.55s infinite;
+}
+
+.book .page:nth-child(2) {
+  -webkit-animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 1.45s infinite;
+  animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0.4s infinite;
+}
+
+.book .page:nth-child(3) {
+  -webkit-animation: pageTurn 1s cubic-bezier(0, 0.39, 1, 0.68) 1.2s infinite;
+  animation: pageTurn 1.2s cubic-bezier(0, 0.39, 1, 0.68) 0.25s infinite;
+}
+
+/* Page turn */
+
+@-webkit-keyframes pageTurn {
+  0% {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  20% {
+    background: #797777; /*2번 색 (넘어가는 책장)*/
+  }
+  40% {
+    background: #716e6d;
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
+  100% {
+    background: #716e6d;
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
+}
+
+@keyframes pageTurn {
+  0% {
+    transform: rotateY(0deg);
+  }
+  20% {
+    background: #797777; /*2번 색 (넘어가는 책장)*/
+  }
+  40% {
+    background: #716e6d;
+    transform: rotateY(-180deg);
+  }
+  100% {
+    background: #716e6d;
+    transform: rotateY(-180deg);
+  }
+}
+
+/* Dots */
+
+@-webkit-keyframes Dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
+
+@keyframes Dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
