@@ -3,3 +3,4 @@
 ./src/mypage/dummy
 .env
 ./src/images
+**/.DS_Store
