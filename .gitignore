@@ -2,5 +2,5 @@
 ./src/style.css
 ./src/mypage/dummy
 .env
-./src/images/
+src/images/*
 **/.DS_Store
