@@ -157,7 +157,6 @@ const Painting = ({
   };
 
   const handleClearClick = () => {
-    // ctx.current.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); //이거하면 다 사라지고 투명해지지만 실제 데이터 받으면 검게 나오므로 맞지만 사용X
     ctx.current.fillStyle = "white"; // 일단 화이트로 바꾼다.
     ctx.current.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); //캔버스 배경 전체를 흰색으로 지워준다.
     ctx.current.fillStyle = ctx.current.strokeStyle; //원래 연필 색상으로 다시 돌려놓는다.
@@ -169,12 +168,6 @@ const Painting = ({
     setEraser(false);
     setErasing(false);
   }
-
-  // function getMouesPosition(e) {
-  //   var mouseX = ((e.offsetX * canvas.width) / canvas.clientWidth) | 0;
-  //   var mouseY = ((e.offsetY * canvas.height) / canvas.clientHeight) | 0;
-  //   return { x: mouseX, y: mouseY };
-  // }
 
   const onMouseMove = ({ nativeEvent }) => {
     const getMouesPosition = (nativeEvent) => {
@@ -199,10 +192,7 @@ const Painting = ({
       );
       ctx.current.lineCap = "round";
       ctx.current.stroke();
-
-      // console.log("x,y", nativeEvent.offsetX, nativeEvent.offsetY);
     } else if (erasing) {
-      // ctx.current.globalCompositeOperation = "destination-out"; //이게 정석 지우개지만 이걸로 하면 검정화면 나타남
       ctx.current.globalCompositeOperation = "source-over";
       const colorExtra = ctx.current.strokeStyle; //일단 지금 선택된 색깔 킵하고
       ctx.current.strokeStyle = "white"; // 지우개에 흰색 입혀서 지우고 마지막에 다시 선택된 색 넣어준다

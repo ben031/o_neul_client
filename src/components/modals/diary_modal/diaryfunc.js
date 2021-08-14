@@ -1,4 +1,4 @@
-import s3 from "../../upload/s3";
+import s3 from "../../../upload/s3";
 export function handleFileUpload(canvasRef, userInfo) {
   //이건 s3에 업로드하는 경우
   return new Promise((resolve, reject) => {

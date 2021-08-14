@@ -31,7 +31,6 @@ export const MainInnerWrapper = styled.div`
   width: 100%;
   min-height: 80vh;
   flex-direction: column;
-  /* border: 1px solid black; */
 
   /* 768px */
   @media only screen and (min-width: ${BREAK_POINT_MOBILE}px) {

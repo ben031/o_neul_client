@@ -20,7 +20,7 @@ import {
 } from "../../styles/mypage/Mypage.style";
 import { connect } from "react-redux";
 import { login, fetchAllLoginDiary } from "../../actions";
-import Diary from "../modals/Diary";
+import Diary from "../modals/diary_modal/Diary";
 import fetchAxios from "../main/useFetch";
 import AOS from "aos";
 

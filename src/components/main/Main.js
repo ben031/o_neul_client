@@ -3,7 +3,7 @@ import moment from "moment";
 import "../../style.css";
 import Calendar from "./calendar/Calendar";
 import CalendarHeader from "./calendar/CalendarHeader";
-import Diary from "../modals/Diary";
+import Diary from "../modals/diary_modal/Diary";
 import {
   MainSection,
   CalendarWrapper,
