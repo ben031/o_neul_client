@@ -29,6 +29,7 @@ import {
   FooterHide,
 } from "../../../styles/modals/DiaryWriting.style";
 import moment from "moment";
+import ModalFooter from "./ModalFooter";
 
 const DiaryWriting = ({
   clickmoment,
@@ -89,8 +90,8 @@ const DiaryWriting = ({
     setEmojiChosen({ emoji: emoji.emoji, color: emoji.color, id: emoji.id });
   };
 
-  const canvasHeight = (window.innerWidth / 2) * 0.4;
-  const textAreaHeight = window.innerHeight - 135 - canvasHeight;
+  // const canvasHeight = (window.innerWidth / 2) * 0.4;
+  // const textAreaHeight = window.innerHeight - 135 - canvasHeight;
 
   const weatherData = (weather) => {
     setWeatherChosen(weather);
@@ -139,7 +140,6 @@ const DiaryWriting = ({
             }
             setLoadingModalOpen(false);
             closeDiaryModal(); //모달창 닫기
-            // alert("오늘도 수고하셨습니다");
           })
           .catch((res) => {
             setLoadingModalOpen(false);
@@ -257,255 +257,310 @@ const DiaryWriting = ({
 
   /* --------------------------------------------------------------------------------------------------------------------------------------------- */
 
-  // 일기 존재 && Read Only
-  if (selectedDiary !== undefined && isEditing === false) {
-    return (
-      <>
-        <ModalWrapper>
-          <DiaryHeader
-            clickmoment={moment(selectedDiary.date)}
-            emojiChosen={emojiChosen}
-            emojiModalOnOff={emojiModalOnOff}
-            emojiOpen={emojiOpen}
-            musicModalOnOff={musicModalOnOff}
-            whatEmoji={whatEmoji}
-            weatherData={weatherData}
-            weatherChosen={weatherChosen}
-            setWeatherChosen={setWeatherChosen}
-            isEditing={isEditing}
-          />
-
-          <Painting
-            canvasRef={canvasRef}
-            musicModalOnOff={musicModalOnOff}
-            selectedImage={selectedDiary.image}
-            isEditing={isEditing}
-          />
-
-          <TextArea
-            textAreaHeight={textAreaHeight}
-            ref={textRef}
-            defaultValue={selectedDiary.text}
-            readOnly
-          />
-
-          <Footer>
-            <FooterClose
-              onClick={() => {
-                closeDiaryModal();
-                passDiaryId(0);
-              }}
-            >
-              닫기
-            </FooterClose>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <label
-                for="check_box"
-                style={{
-                  fontSize: "1.5rem",
-                  color: "#605138",
-                  fontFamily: "var(--thick-font)",
-                  fontWeight: "800",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                {selectedDiary.isPublic
-                  ? "공개 일기입니다"
-                  : "비공개 일기입니다"}
-              </label>
-              {selectedDiary.isOtherDiary !== true ? (
-                <FooterPost onClick={() => setIsEditing(true)}>
-                  수정하기
-                </FooterPost>
-              ) : (
-                <FooterHide />
-              )}
-            </div>
-          </Footer>
-        </ModalWrapper>
-
-        <MusicModal
-          musicOpen={musicOpen}
+  return (
+    <>
+      <ModalWrapper>
+        <DiaryHeader
+          clickmoment={selectedDiary ? moment(selectedDiary.date) : clickmoment}
+          emojiChosen={emojiChosen}
+          emojiModalOnOff={emojiModalOnOff}
+          emojiOpen={emojiOpen}
           musicModalOnOff={musicModalOnOff}
-          getMusicData={getMusicData}
-          selectedMusicId={selectedDiary.music.id}
-          musicChosen={musicChosen}
-          setMusicChosen={setMusicChosen}
-          style={{ display: "flex", position: "relative" }}
+          whatEmoji={whatEmoji}
+          weatherData={weatherData}
+          weatherChosen={weatherChosen}
+          setWeatherChosen={setWeatherChosen}
+          isEditing={selectedDiary ? isEditing : true}
+        />
+        <Painting
+          canvasRef={canvasRef}
+          musicModalOnOff={musicModalOnOff}
+          selectedImage={selectedDiary && selectedDiary.image}
+          paintingChangeCheck={isEditing && paintingChangeCheck}
           isEditing={isEditing}
         />
-      </>
-    );
-  }
-  // 선택된 다이어리 존재 && 편집 중
-  else if (selectedDiary !== undefined && isEditing === true) {
-    return (
-      <>
-        <ModalWrapper>
-          <DiaryHeader
-            clickmoment={clickmoment}
-            emojiChosen={emojiChosen}
-            emojiModalOnOff={emojiModalOnOff}
-            emojiOpen={emojiOpen}
-            musicModalOnOff={musicModalOnOff}
-            whatEmoji={whatEmoji}
-            weatherData={weatherData}
-            weatherChosen={weatherChosen}
-            setWeatherChosen={setWeatherChosen}
-            isEditing={isEditing}
-          />
-
-          <Painting
-            canvasRef={canvasRef}
-            musicModalOnOff={musicModalOnOff}
-            isEditing={isEditing}
-            selectedImage={selectedDiary && selectedDiary.image}
-            paintingChangeCheck={paintingChangeCheck}
-          />
-
-          <TextArea
-            textAreaHeight={textAreaHeight}
-            ref={textRef}
-            defaultValue={selectedDiary.text}
-            placeholder="오늘은 어떠셨나요?"
-            onChange={(e) => {
-              setDiaryText(e.target.value);
-            }}
-          />
-
-          <Footer>
-            <FooterClose onClick={closeDiaryModal}>닫기</FooterClose>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              {isPublic === false ? (
-                <input
-                  type="checkbox"
-                  id="check_box"
-                  checked={false}
-                  onChange={() => {
-                    setIsPublic(!isPublic);
-                  }}
-                ></input>
-              ) : (
-                <input
-                  type="checkbox"
-                  id="check_box"
-                  checked={true}
-                  onChange={() => {
-                    setIsPublic(!isPublic);
-                  }}
-                ></input>
-              )}
-
-              <label
-                for="check_box"
-                className="private"
-                style={{
-                  fontSize: "1.5rem",
-                  color: "#605138",
-                  fontFamily: "var(--thick-font)",
-                  fontWeight: "800",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                글 공개
-              </label>
-              <FooterPost className="post" onClick={recompleteDiary}>
-                재등록하기
-              </FooterPost>
-            </div>
-          </Footer>
-        </ModalWrapper>
-
-        <MusicModal
-          musicOpen={musicOpen}
-          musicModalOnOff={musicModalOnOff}
-          getMusicData={getMusicData}
-          musicChosen={musicChosen}
-          setMusicChosen={setMusicChosen}
-          style={{ display: "flex", position: "relative" }}
+        <Text
+          setDiaryText={setDiaryText}
+          defaultValue={selectedDiary && selectedDiary.text}
+          // 수정중이 아니면서 선택된 다이어리가 존재할 때만 readOnly
           isEditing={isEditing}
+          selectedDiary={selectedDiary}
         />
-
-        <LoadingModal loadingModalOpen={loadingModalOpen} />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <ModalWrapper>
-          <DiaryHeader
-            clickmoment={clickmoment}
-            emojiChosen={emojiChosen}
-            emojiModalOnOff={emojiModalOnOff}
-            emojiOpen={emojiOpen}
-            musicModalOnOff={musicModalOnOff}
-            whatEmoji={whatEmoji}
-            weatherData={weatherData}
-            weatherChosen={weatherChosen}
-            setWeatherChosen={setWeatherChosen}
-          />
-
-          <Painting canvasRef={canvasRef} musicModalOnOff={musicModalOnOff} />
-          <Text setDiaryText={setDiaryText} />
-
-          <Footer>
-            <FooterClose onClick={closeDiaryModal}>닫기</FooterClose>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <input
-                type="checkbox"
-                id="check_box"
-                onClick={() => {
-                  setIsPublic(!isPublic);
-                }}
-              ></input>
-              <label
-                for="check_box"
-                style={{
-                  fontSize: "1.5rem",
-                  color: "#605138",
-                  fontFamily: "var(--thick-font)",
-                  fontWeight: "800",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                글 공개
-              </label>
-              <FooterPost onClick={completeDiary}>등록하기</FooterPost>
-            </div>
-          </Footer>
-        </ModalWrapper>
-
-        <MusicModal
-          musicOpen={musicOpen}
-          musicModalOnOff={musicModalOnOff}
-          getMusicData={getMusicData}
-          style={{ display: "flex", position: "relative" }}
+        <ModalFooter
+          closeDiaryModal={closeDiaryModal}
+          selectedDiary={selectedDiary}
+          setIsEditing={setIsEditing}
+          passDiaryId={passDiaryId}
+          completeDiary={completeDiary}
+          isPublic={isPublic}
+          setIsPublic={setIsPublic}
+          isEditing={selectedDiary ? isEditing : true}
         />
-        <LoadingModal loadingModalOpen={loadingModalOpen} />
-      </>
-    );
-  }
+      </ModalWrapper>
+      <MusicModal
+        musicOpen={musicOpen}
+        musicModalOnOff={musicModalOnOff}
+        getMusicData={getMusicData}
+        musicChosen={musicChosen}
+        setMusicChosen={setMusicChosen}
+        style={{ display: "flex", position: "relative" }}
+        isEditing={isEditing}
+      />
+
+      <LoadingModal loadingModalOpen={loadingModalOpen} />
+    </>
+  );
+
+  // 일기 존재 && Read Only ( 수정하기 전 )
+  // if (selectedDiary !== undefined && isEditing === false) {
+  //   return (
+  //     <>
+  //       <ModalWrapper>
+  //         <DiaryHeader
+  //           clickmoment={moment(selectedDiary.date)}
+  //           emojiChosen={emojiChosen}
+  //           emojiModalOnOff={emojiModalOnOff}
+  //           emojiOpen={emojiOpen}
+  //           musicModalOnOff={musicModalOnOff}
+  //           whatEmoji={whatEmoji}
+  //           weatherData={weatherData}
+  //           weatherChosen={weatherChosen}
+  //           setWeatherChosen={setWeatherChosen}
+  //           isEditing={isEditing}
+  //         />
+
+  //         <Painting
+  //           canvasRef={canvasRef}
+  //           musicModalOnOff={musicModalOnOff}
+  //           selectedImage={selectedDiary.image}
+  //           isEditing={isEditing}
+  //         />
+
+  //         <TextArea
+  //           textAreaHeight={textAreaHeight}
+  //           ref={textRef}
+  //           defaultValue={selectedDiary.text}
+  //           readOnly
+  //         />
+
+  //         <Footer>
+  //           <FooterClose
+  //             onClick={() => {
+  //               closeDiaryModal();
+  //               passDiaryId(0);
+  //             }}
+  //           >
+  //             닫기
+  //           </FooterClose>
+  //           <div
+  //             style={{
+  //               display: "flex",
+  //               flexDirection: "row",
+  //               alignItems: "center",
+  //             }}
+  //           >
+  //             <label
+  //               for="check_box"
+  //               style={{
+  //                 fontSize: "1.5rem",
+  //                 color: "#605138",
+  //                 fontFamily: "var(--thick-font)",
+  //                 fontWeight: "800",
+  //                 display: "flex",
+  //                 alignItems: "center",
+  //               }}
+  //             >
+  //               {selectedDiary.isPublic
+  //                 ? "공개 일기입니다"
+  //                 : "비공개 일기입니다"}
+  //             </label>
+  //             {selectedDiary.isOtherDiary !== true ? (
+  //               <FooterPost onClick={() => setIsEditing(true)}>
+  //                 수정하기
+  //               </FooterPost>
+  //             ) : (
+  //               <FooterHide />
+  //             )}
+  //           </div>
+  //         </Footer>
+  //       </ModalWrapper>
+
+  //       <MusicModal
+  //         musicOpen={musicOpen}
+  //         musicModalOnOff={musicModalOnOff}
+  //         getMusicData={getMusicData}
+  //         selectedMusicId={selectedDiary.music.id}
+  //         musicChosen={musicChosen}
+  //         setMusicChosen={setMusicChosen}
+  //         style={{ display: "flex", position: "relative" }}
+  //         isEditing={isEditing}
+  //       />
+  //     </>
+  //   );
+  // }
+  // // 선택된 다이어리 존재 && 수정 중
+  // else if (selectedDiary !== undefined && isEditing === true) {
+  //   return (
+  //     <>
+  //       <ModalWrapper>
+  //         <DiaryHeader
+  //           clickmoment={clickmoment}
+  //           emojiChosen={emojiChosen}
+  //           emojiModalOnOff={emojiModalOnOff}
+  //           emojiOpen={emojiOpen}
+  //           musicModalOnOff={musicModalOnOff}
+  //           whatEmoji={whatEmoji}
+  //           weatherData={weatherData}
+  //           weatherChosen={weatherChosen}
+  //           setWeatherChosen={setWeatherChosen}
+  //           isEditing={isEditing}
+  //         />
+
+  //         <Painting
+  //           canvasRef={canvasRef}
+  //           musicModalOnOff={musicModalOnOff}
+  //           isEditing={isEditing}
+  //           selectedImage={selectedDiary && selectedDiary.image}
+  //           paintingChangeCheck={paintingChangeCheck}
+  //         />
+
+  //         <TextArea
+  //           textAreaHeight={textAreaHeight}
+  //           ref={textRef}
+  //           defaultValue={selectedDiary.text}
+  //           placeholder="오늘은 어떠셨나요?"
+  //           onChange={(e) => {
+  //             setDiaryText(e.target.value);
+  //           }}
+  //         />
+
+  //         <Footer>
+  //           <FooterClose onClick={closeDiaryModal}>닫기</FooterClose>
+  //           <div
+  //             style={{
+  //               display: "flex",
+  //               flexDirection: "row",
+  //               alignItems: "center",
+  //             }}
+  //           >
+  //             {isPublic === false ? (
+  //               <input
+  //                 type="checkbox"
+  //                 id="check_box"
+  //                 checked={false}
+  //                 onChange={() => {
+  //                   setIsPublic(!isPublic);
+  //                 }}
+  //               ></input>
+  //             ) : (
+  //               <input
+  //                 type="checkbox"
+  //                 id="check_box"
+  //                 checked={true}
+  //                 onChange={() => {
+  //                   setIsPublic(!isPublic);
+  //                 }}
+  //               ></input>
+  //             )}
+
+  //             <label
+  //               for="check_box"
+  //               className="private"
+  //               style={{
+  //                 fontSize: "1.5rem",
+  //                 color: "#605138",
+  //                 fontFamily: "var(--thick-font)",
+  //                 fontWeight: "800",
+  //                 display: "flex",
+  //                 alignItems: "center",
+  //               }}
+  //             >
+  //               글 공개
+  //             </label>
+  //             <FooterPost className="post" onClick={recompleteDiary}>
+  //               재등록하기
+  //             </FooterPost>
+  //           </div>
+  //         </Footer>
+  //       </ModalWrapper>
+
+  //       <MusicModal
+  //         musicOpen={musicOpen}
+  //         musicModalOnOff={musicModalOnOff}
+  //         getMusicData={getMusicData}
+  //         musicChosen={musicChosen}
+  //         setMusicChosen={setMusicChosen}
+  //         style={{ display: "flex", position: "relative" }}
+  //         isEditing={isEditing}
+  //       />
+
+  //       <LoadingModal loadingModalOpen={loadingModalOpen} />
+  //     </>
+  //   );
+  // } else {
+  //   return (
+  //     <>
+  //       <ModalWrapper>
+  //         <DiaryHeader
+  //           clickmoment={clickmoment}
+  //           emojiChosen={emojiChosen}
+  //           emojiModalOnOff={emojiModalOnOff}
+  //           emojiOpen={emojiOpen}
+  //           musicModalOnOff={musicModalOnOff}
+  //           whatEmoji={whatEmoji}
+  //           weatherData={weatherData}
+  //           weatherChosen={weatherChosen}
+  //           setWeatherChosen={setWeatherChosen}
+  //           isEditing={true}
+  //         />
+
+  //         <Painting canvasRef={canvasRef} musicModalOnOff={musicModalOnOff} />
+  //         <Text setDiaryText={setDiaryText} />
+
+  //         <Footer>
+  //           <FooterClose onClick={closeDiaryModal}>닫기</FooterClose>
+  //           <div
+  //             style={{
+  //               display: "flex",
+  //               flexDirection: "row",
+  //               alignItems: "center",
+  //             }}
+  //           >
+  //             <input
+  //               type="checkbox"
+  //               id="check_box"
+  //               onClick={() => {
+  //                 setIsPublic(!isPublic);
+  //               }}
+  //             ></input>
+  //             <label
+  //               for="check_box"
+  //               style={{
+  //                 fontSize: "1.5rem",
+  //                 color: "#605138",
+  //                 fontFamily: "var(--thick-font)",
+  //                 fontWeight: "800",
+  //                 display: "flex",
+  //                 alignItems: "center",
+  //               }}
+  //             >
+  //               글 공개
+  //             </label>
+  //             <FooterPost onClick={completeDiary}>등록하기</FooterPost>
+  //           </div>
+  //         </Footer>
+  //       </ModalWrapper>
+
+  //       <MusicModal
+  //         musicOpen={musicOpen}
+  //         musicModalOnOff={musicModalOnOff}
+  //         getMusicData={getMusicData}
+  //         style={{ display: "flex", position: "relative" }}
+  //       />
+  //       <LoadingModal loadingModalOpen={loadingModalOpen} />
+  //     </>
+  //   );
+  // }
 };
 
 //이렇게 써도됌
