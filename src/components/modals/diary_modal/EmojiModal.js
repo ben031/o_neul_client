@@ -21,7 +21,7 @@ const EmojisOuter = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-  // animation: modal-show 0.3s;
+  animation: modal-show 0.3s;
   top: 9.8rem;
   z-index: 200;
   transition: all 1s;

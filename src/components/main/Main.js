@@ -3,7 +3,7 @@ import moment from "moment";
 import "../../style.css";
 import Calendar from "./calendar/Calendar";
 import CalendarHeader from "./calendar/CalendarHeader";
-import Diary from "../modals/Diary";
+import Diary from "../modals/diary_modal/Diary";
 import {
   MainSection,
   CalendarWrapper,
@@ -26,8 +26,8 @@ const Main = ({ userInfo, fetchAllLoginDiary, fetchAllUnloginDiary }) => {
   const [selectedDiaryId, setSelectedDiaryId] = useState(0);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  // 비 로그인시, 퍼블릭 다이어리 정보 fetch....
-  // 로그인시, 퍼블릭 및 개인 다이어리 정보 fetch....
+  // 비 로그인시, 퍼블릭 다이어리 정보 fetch........
+  // 로그인시, 퍼블릭 및 개인 다이어리 정보 fetch.......
   useEffect(() => {
     fetchAxios(userInfo)
       .then((result) => {

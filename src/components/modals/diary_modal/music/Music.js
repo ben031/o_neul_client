@@ -5,7 +5,6 @@ import { pause2 } from "react-icons-kit/icomoon/pause2";
 import { ic_close } from "react-icons-kit/md/ic_close";
 import { plus } from "react-icons-kit/feather/plus";
 import uniqueId from "lodash/uniqueId";
-import axios from "axios";
 
 import {
   volumeMedium,
@@ -17,7 +16,6 @@ import {
 
 import "./Music.css";
 import SelectBar from "./SelectBar";
-// import musics from "./musics";
 import { connect } from "react-redux";
 
 const music = [
@@ -148,12 +146,6 @@ const Music = ({
     const playheadWidth = timelineRef.current.offsetWidth; //offsetWidth CSS상으로 재생시간바의 길이
     const offsetWidth = timelineRef.current.offsetLeft; //offsetLeft CSS상으로 body박스의 가로 길이 right은 없나봄.
     const userClickWidth = e.clientX - offsetWidth; //e.clientX(body박스 가로 길의 전체 중 내가 클릭한 좌표의 x값 - 재생시간바의 길이
-    // console.log("e.clientX", e.clientX);
-    // console.log("offsetWidth", offsetWidth);
-    // console.log(
-    //   "timelineRef.current.offsetLeft",
-    //   timelineRef.current.offsetLeft
-    // );
     const userClickWidthInPercent = (userClickWidth * 100) / playheadWidth; //재생시간바 대비 몇 퍼센트인지 계산해서 CSS에 효과주기
 
     playheadRef.current.style.width = userClickWidthInPercent + "%"; //CSS style.width에 %로 나타내줌
@@ -269,8 +261,6 @@ const Music = ({
   //실험
   useEffect(() => {
     let filteredList = filterListByGenre(musicLists);
-    // console.log("장르 바뀔 때마다 필터한 리스트", filteredList);
-    // setMusicLists(filteredList);
     setFiltered(filteredList);
     setIndex(0);
   }, [genre]);

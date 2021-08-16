@@ -2,10 +2,11 @@ import React, { useState, useRef, useCallback } from "react";
 import axios from "axios";
 import "moment/locale/ko";
 import MusicModal from "./MusicModal";
-import Painting from "../painting/Painting";
+import Painting from "../../painting/Painting";
 import "./DiaryWriting.css";
 import { connect } from "react-redux";
-import emojis from "../../icons/imojis";
+import emojis from "../../../icons/imojis";
+
 import {
   addNewPublicDiary,
   addNewPrivateDiary,
@@ -13,8 +14,8 @@ import {
   modifyPublicDiary,
   changeToPublic,
   changeToPrivate,
-} from "../../actions";
-import LoadingModal from "./LoadingModal";
+} from "../../../actions";
+import LoadingModal from "../LoadingModal";
 import { diffCheck, handleFileUpload } from "./diaryfunc";
 import Text from "./Text";
 import DiaryHeader from "./DiaryHeader";
@@ -26,7 +27,7 @@ import {
   FooterClose,
   FooterPost,
   FooterHide,
-} from "../../styles/modals/DiaryWriting.style";
+} from "../../../styles/modals/DiaryWriting.style";
 import moment from "moment";
 
 const DiaryWriting = ({
@@ -42,7 +43,6 @@ const DiaryWriting = ({
   changeToPrivate,
   changeToPublic,
 }) => {
-  console.log(clickmoment);
   const [emojiOpen, setEmojiOpen] = useState(false); //모달창 오픈 클로즈
   const [emojiChosen, setEmojiChosen] = useState(() => {
     if (selectedDiary) {

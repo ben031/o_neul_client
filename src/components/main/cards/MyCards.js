@@ -14,7 +14,7 @@ import MyCard from "./card/MyCard";
 import { useState } from "react";
 import Signup from "../../modals/signup_in/Signup";
 import AOS from "aos";
-import Diary from "../../modals/Diary";
+import Diary from "../../modals/diary_modal/Diary";
 import moment from "moment";
 
 const MyCards = ({ diary, userInfo, modalHandle, setDeleteLoading }) => {
@@ -60,7 +60,7 @@ const MyCards = ({ diary, userInfo, modalHandle, setDeleteLoading }) => {
             ))}
         </Carousel>
       ),
-    [diary.myDiary]
+    [diary.myDiary, modalHandle, setDeleteLoading]
   );
 
   return (

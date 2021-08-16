@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { flexCenter } from "../../styles/global.style";
-import DiaryWriting from "../modals/DiaryWriting";
+import { flexCenter } from "../../../styles/global.style";
+import DiaryWriting from "./DiaryWriting";
 import { connect } from "react-redux";
 import "aos/dist/aos.css";
 
@@ -12,6 +12,7 @@ const Diary = ({
   selectedDiaryId,
   passDiaryId,
 }) => {
+  // 수정 요망.
   const filterDiary = () => {
     if (selectedDiaryId) {
       const otherDiary = diary.publicDiary.filter(
@@ -25,9 +26,9 @@ const Diary = ({
       )[0];
     }
   };
-
+  console.log(diary);
   const selectedDiary = filterDiary();
-  console.log(selectedDiaryId);
+
   return (
     <Diarybackground data-aos={"zoom"} data-aos-duration={"500"}>
       <DiaryWriting
