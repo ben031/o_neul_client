@@ -6,7 +6,6 @@ import Painting from "../../painting/Painting";
 import "./DiaryWriting.css";
 import { connect } from "react-redux";
 import emojis from "../../../icons/imojis";
-
 import {
   addNewPublicDiary,
   addNewPrivateDiary,
@@ -20,14 +19,7 @@ import { diffCheck, handleFileUpload } from "./diaryfunc";
 import Text from "./Text";
 import DiaryHeader from "./DiaryHeader";
 import modifyAxios from "./modifyFunction";
-import {
-  ModalWrapper,
-  TextArea,
-  Footer,
-  FooterClose,
-  FooterPost,
-  FooterHide,
-} from "../../../styles/modals/DiaryWriting.style";
+import { ModalWrapper } from "../../../styles/modals/DiaryWriting.style";
 import moment from "moment";
 import ModalFooter from "./ModalFooter";
 
@@ -89,9 +81,6 @@ const DiaryWriting = ({
     //이모지에서 선택한 놈 가져오는 함수
     setEmojiChosen({ emoji: emoji.emoji, color: emoji.color, id: emoji.id });
   };
-
-  // const canvasHeight = (window.innerWidth / 2) * 0.4;
-  // const textAreaHeight = window.innerHeight - 135 - canvasHeight;
 
   const weatherData = (weather) => {
     setWeatherChosen(weather);
@@ -292,6 +281,7 @@ const DiaryWriting = ({
           setIsEditing={setIsEditing}
           passDiaryId={passDiaryId}
           completeDiary={completeDiary}
+          recompleteDiary={recompleteDiary}
           isPublic={isPublic}
           setIsPublic={setIsPublic}
           isEditing={selectedDiary ? isEditing : true}
