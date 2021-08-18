@@ -19,17 +19,7 @@ const weathers = [
   { id: 5, weather: iosSnowy, color: "#44c7f4" },
 ];
 
-const WeatherModal = ({
-  weatherData,
-  selectedWeatherId,
-  isEditing,
-  weatherChosen,
-}) => {
-  // useEffect(() => {
-  //   console.log(":::::::::::::::::");
-  //   weatherData(selectedWeatherId);
-  // }, [isEditing === false]);
-
+const WeatherModal = ({ weatherData, isEditing, weatherChosen }) => {
   const weatherClickHandler = React.useCallback(
     (id) => {
       weatherData(id);

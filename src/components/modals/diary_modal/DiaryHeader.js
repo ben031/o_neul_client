@@ -17,9 +17,9 @@ const DiaryHeader = ({
   weatherChosen,
   isEditing,
 }) => {
-  const emojiModalHandler = React.useCallback(() => {
-    emojiModalOnOff();
-  }, [emojiModalOnOff]);
+  // const emojiModalHandler = React.useCallback(() => {
+  //   emojiModalOnOff();
+  // }, [emojiModalOnOff]);
 
   return (
     <Header className="header">
@@ -32,7 +32,7 @@ const DiaryHeader = ({
           icon={emojiChosen ? emojiChosen.emoji : farSmile}
           onClick={() => {
             if (isEditing) {
-              emojiModalHandler();
+              emojiModalOnOff();
             } else {
               return;
             }
