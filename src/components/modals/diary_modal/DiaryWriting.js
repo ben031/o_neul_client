@@ -244,8 +244,6 @@ const DiaryWriting = ({
     }
   };
 
-  /* --------------------------------------------------------------------------------------------------------------------------------------------- */
-
   return (
     <>
       <ModalWrapper>
@@ -293,7 +291,7 @@ const DiaryWriting = ({
         getMusicData={getMusicData}
         musicChosen={musicChosen}
         setMusicChosen={setMusicChosen}
-        style={{ display: "flex", position: "relative" }}
+        selectedMusicId={selectedDiary && selectedDiary.music.id}
         isEditing={isEditing}
       />
 
