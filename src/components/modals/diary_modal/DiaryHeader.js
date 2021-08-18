@@ -17,10 +17,6 @@ const DiaryHeader = ({
   weatherChosen,
   isEditing,
 }) => {
-  // const emojiModalHandler = React.useCallback(() => {
-  //   emojiModalOnOff();
-  // }, [emojiModalOnOff]);
-
   return (
     <Header className="header">
       <HeaderDate className="date">
@@ -146,11 +142,9 @@ const HeaderDate = styled.div`
 `;
 
 const HeaderEmoji = styled.div`
-  /* border: 1px solid black; */
   position: relative;
   flex: 1 1 20%;
   text-align: center;
-  /* background-color: white; */
   padding: 0 -0.5rem;
   border-radius: 1rem;
 `;
@@ -159,9 +153,6 @@ const HeaderWeather = styled.div`
   flex: 5 1 40%;
   text-align: center;
   font-size: 30;
-  /* background-color: white; */
-  /* border-radius: 1rem; */
-  /* margin-right: 1rem; */
 
   @media screen and (max-width: 570px) {
     & {
