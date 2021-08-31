@@ -44,9 +44,9 @@ function App({ login }) {
           <Route path="/main">
             <Main />
           </Route>
-          <Route path="/mypage">
+          {/* <Route path="/mypage">
             <Mypage />
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

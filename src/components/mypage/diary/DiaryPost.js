@@ -7,8 +7,6 @@ import MyCardList from "./MyCardList";
 const DiaryPost = ({ diary, myDiaries, setMyDiaries, modalHandle }) => {
   const [onPublic, setOnPublic] = useState("");
 
-  console.log(myDiaries);
-
   const filteringPublic = (e) => {
     let selectCard = e.target.value;
     setOnPublic(selectCard);

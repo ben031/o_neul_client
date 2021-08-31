@@ -2,7 +2,8 @@ import React, { useState, useRef, useCallback } from "react";
 import axios from "axios";
 import "moment/locale/ko";
 import MusicModal from "./MusicModal";
-import Painting from "../../painting/Painting";
+import Painting from "./painting/Painting";
+import PaintingRe from "./painting/PaintingRe";
 import "./DiaryWriting.css";
 import { connect } from "react-redux";
 import emojis from "../../../icons/imojis";
@@ -259,13 +260,14 @@ const DiaryWriting = ({
           setWeatherChosen={setWeatherChosen}
           isEditing={selectedDiary ? isEditing : true}
         />
-        <Painting
+        <PaintingRe />
+        {/* <Painting
           canvasRef={canvasRef}
           musicModalOnOff={musicModalOnOff}
           selectedImage={selectedDiary && selectedDiary.image}
           paintingChangeCheck={isEditing && paintingChangeCheck}
           isEditing={isEditing}
-        />
+        /> */}
         <Text
           setDiaryText={setDiaryText}
           defaultValue={selectedDiary && selectedDiary.text}
