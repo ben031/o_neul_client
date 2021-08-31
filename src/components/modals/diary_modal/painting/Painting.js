@@ -49,7 +49,6 @@ const Painting = ({
   const [eraser, setEraser] = useState(false);
   const [erasing, setErasing] = useState(false);
   const [lineWeight, setLineWeight] = useState(2.5);
-
   const [buttonClicked, setButtonClicked] = useState("paint_btn");
 
   const buttonClickHandler = (e) => {
@@ -178,12 +177,9 @@ const Painting = ({
       return { x: mouseX, y: mouseY };
     };
     const canvas = canvasRef.current;
-    const canvasBounds = canvasRef.current.getBoundingClientRect();
 
     if (ctx.current && !painting && !erasing) {
       ctx.current.beginPath();
-      // console.log("CTX", ctx.current.beginPath());
-      // ctx.current.moveTo(x, y);
     } else if (painting) {
       ctx.current.globalCompositeOperation = "source-over";
       ctx.current.lineTo(
