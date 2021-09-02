@@ -1,5 +1,7 @@
 import React from "react";
+import uniqueId from "lodash/uniqueId";
 import styled from "styled-components";
+
 let arr_Colors = [
   "#e32119",
   "#ff3b30",
@@ -27,25 +29,29 @@ let arr_Colors = [
   "#2c2c2c",
 ];
 
-const Colors = ({ setLineColor }) => {
+const Colors = ({ setColor, isErasing }) => {
   return (
-    <ColorWrapper>
+    <StyledColors>
       {arr_Colors.map((color) => (
-        <Color color={color} onClick={() => setLineColor(color)}></Color>
+        <StyledColor
+          key={uniqueId()}
+          color={color}
+          onClick={() => !isErasing && setColor(color)}
+        />
       ))}
-    </ColorWrapper>
+    </StyledColors>
   );
 };
 
 export default Colors;
 
-const ColorWrapper = styled.div`
+const StyledColors = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const Color = styled.div`
-  height: 3rem;
+const StyledColor = styled.div`
+  height: 3.5rem;
   width: 100%;
   background: ${(props) => props.color};
   cursor: pointer;

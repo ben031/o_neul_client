@@ -260,11 +260,14 @@ const DiaryWriting = ({
           setWeatherChosen={setWeatherChosen}
           isEditing={selectedDiary ? isEditing : true}
         />
-        <PaintingRe />
+        <PaintingRe
+          selectedImage={selectedDiary && selectedDiary.image}
+          isEditing={isEditing}
+        />
         {/* <Painting
+          selectedImage={selectedDiary && selectedDiary.image}
           canvasRef={canvasRef}
           musicModalOnOff={musicModalOnOff}
-          selectedImage={selectedDiary && selectedDiary.image}
           paintingChangeCheck={isEditing && paintingChangeCheck}
           isEditing={isEditing}
         /> */}
@@ -287,7 +290,7 @@ const DiaryWriting = ({
           isEditing={selectedDiary ? isEditing : true}
         />
       </ModalWrapper>
-      <MusicModal
+      {/* <MusicModal
         musicOpen={musicOpen}
         musicModalOnOff={musicModalOnOff}
         getMusicData={getMusicData}
@@ -295,7 +298,7 @@ const DiaryWriting = ({
         setMusicChosen={setMusicChosen}
         selectedMusicId={selectedDiary && selectedDiary.music.id}
         isEditing={isEditing}
-      />
+      /> */}
 
       <LoadingModal loadingModalOpen={loadingModalOpen} />
     </>
