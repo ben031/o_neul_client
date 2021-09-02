@@ -29,6 +29,7 @@ export default React.memo(Text);
 const TextArea = styled.textarea`
   border: none;
   height: ${(props) => props.textAreaHeight}px;
+  /* height: 100%; */
   resize: none;
   border: none;
   font-size: 1.7rem;

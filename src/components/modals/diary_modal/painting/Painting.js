@@ -170,10 +170,8 @@ const Painting = ({
 
   const onMouseMove = ({ nativeEvent }) => {
     const getMouesPosition = (nativeEvent) => {
-      var mouseX =
-        ((nativeEvent.offsetX * canvas.width) / canvas.clientWidth) | 0;
-      var mouseY =
-        ((nativeEvent.offsetY * canvas.height) / canvas.clientHeight) | 0;
+      var mouseX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
+      var mouseY = (nativeEvent.offsetY * canvas.height) / canvas.clientHeight;
       return { x: mouseX, y: mouseY };
     };
     const canvas = canvasRef.current;
@@ -218,6 +216,7 @@ const Painting = ({
       ctx.current.fillStyle = colorExtra;
     }
   };
+
   const handleEraserClick = () => {
     setEraser(true);
   };
