@@ -7,7 +7,6 @@ const getMouesPosition = (nativeEvent, canvas) => {
   let mouseX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
   let mouseY = (nativeEvent.offsetY * canvas.height) / canvas.clientHeight;
 
-  console.log(mouseX, mouseY);
   return { x: mouseX, y: mouseY };
 };
 
@@ -18,8 +17,12 @@ const changeState = (willChange, ...rest) => {
   }
 };
 
-const PaintingRe = ({ selectedImage, isEditing }) => {
-  const canvasRef = useRef(null);
+const PaintingRe = ({
+  canvasRef,
+  selectedImage,
+  isEditing,
+  paintingChangeCheck,
+}) => {
   const [ctx, setCtx] = useState();
   const [canvasCur, setCanvasCur] = useState();
   const [isDrawing, setIsDrawing] = useState(false);
@@ -38,6 +41,7 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
     context.lineCap = "round";
     context.lineWidth = lineWidth;
 
+    // 이미 일기가 존재하면 이미지 로드 후 캔버스에 그리기
     if (selectedImage) {
       const img = new Image();
       img.src = selectedImage;
@@ -57,6 +61,9 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
 
   // 그리기 시작
   const startDrawing = ({ nativeEvent }) => {
+    if (isEditing) {
+      paintingChangeCheck();
+    }
     const x = getMouesPosition(nativeEvent, canvasCur).x;
     const y = getMouesPosition(nativeEvent, canvasCur).y;
     ctx.beginPath();
@@ -117,9 +124,9 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
   // 이미지 불러오기
   const loadImg = (e) => {
     // e.preventDefault();
-    // if (isEditing) {
-    //   paintingChangeCheck();
-    // }
+    if (isEditing) {
+      paintingChangeCheck();
+    }
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
@@ -178,5 +185,7 @@ const StyledPainting = styled.section``;
  *
  * 더 해야하는 것
  *  - 파일 불러오기
+ *    - 완료
  *  - 드로잉 변화 함수로 체크해서 재등록 여부 스테이트 관리하기
+ *    - 완료
  */

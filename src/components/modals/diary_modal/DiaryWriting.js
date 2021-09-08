@@ -261,8 +261,10 @@ const DiaryWriting = ({
           isEditing={selectedDiary ? isEditing : true}
         />
         <PaintingRe
+          canvasRef={canvasRef}
           selectedImage={selectedDiary && selectedDiary.image}
           isEditing={isEditing}
+          paintingChangeCheck={isEditing && paintingChangeCheck}
         />
         {/* <Painting
           selectedImage={selectedDiary && selectedDiary.image}
