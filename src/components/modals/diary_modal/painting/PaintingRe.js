@@ -6,6 +6,8 @@ import PaintingOptions from "./PaintingOptions";
 const getMouesPosition = (nativeEvent, canvas) => {
   let mouseX = (nativeEvent.offsetX * canvas.width) / canvas.clientWidth;
   let mouseY = (nativeEvent.offsetY * canvas.height) / canvas.clientHeight;
+
+  console.log(mouseX, mouseY);
   return { x: mouseX, y: mouseY };
 };
 
@@ -32,7 +34,7 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
     canvas.width = 1000;
     canvas.height = 500;
     canvas.style.width = `100%`;
-    canvas.style.height = `100%`;
+    // canvas.style.height = `100%`;
     context.lineCap = "round";
     context.lineWidth = lineWidth;
 
@@ -113,7 +115,30 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
   };
 
   // 이미지 불러오기
+  const loadImg = (e) => {
+    // e.preventDefault();
+    // if (isEditing) {
+    //   paintingChangeCheck();
+    // }
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
 
+    const fileList = e.target.files[0];
+
+    const reader = new FileReader();
+
+    // 파일 읽기 완료의 콜백 함수
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 1000, 500);
+      };
+      img.src = event.target.result;
+    };
+
+    // What the basically does is to ‘readAsDataURL’ the uploaded image.
+    reader.readAsDataURL(fileList);
+  };
   return (
     <StyledPainting>
       {(isEditing || !selectedImage) && (
@@ -125,6 +150,7 @@ const PaintingRe = ({ selectedImage, isEditing }) => {
             fill={fill}
             lineWidth={lineWidth}
             setLineWidth={setLineWidth}
+            loadImg={loadImg}
           />
           <Colors setColor={setColor} isErasing={isErasing} />
         </>
@@ -148,6 +174,7 @@ const StyledPainting = styled.section``;
  * 버그
  *  - 수정 중일 때 텍스트 영역까지 넘쳐버리는 버그
  *  - 마우스 커서를 캔버스 바깥 영역으로 나가도 계속 드로잉이 지속되는 버그
+ *    - canvas css height 100% 없애버리니 해결완료
  *
  * 더 해야하는 것
  *  - 파일 불러오기
