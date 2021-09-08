@@ -42,6 +42,7 @@ const PaintingOptions = ({
         break;
     }
   };
+
   return (
     <StyledPaintingButtonWrapper>
       {optionBtn.map((btn) => (
