@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import Colors from "./Colors";
 import PaintingOptions from "./PaintingOptions";
 
@@ -123,7 +122,8 @@ const PaintingRe = ({
 
   // 이미지 불러오기
   const loadImg = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
+
     if (isEditing) {
       paintingChangeCheck();
     }
@@ -147,7 +147,7 @@ const PaintingRe = ({
     reader.readAsDataURL(fileList);
   };
   return (
-    <StyledPainting>
+    <section>
       {(isEditing || !selectedImage) && (
         <>
           <PaintingOptions
@@ -169,13 +169,11 @@ const PaintingRe = ({
         onMouseUp={endDrawing}
         onMouseMove={(e) => draw(e)}
       ></canvas>
-    </StyledPainting>
+    </section>
   );
 };
 
 export default PaintingRe;
-
-const StyledPainting = styled.section``;
 
 /**
  * 버그

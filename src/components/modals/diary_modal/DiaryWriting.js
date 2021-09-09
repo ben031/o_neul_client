@@ -266,13 +266,6 @@ const DiaryWriting = ({
           isEditing={isEditing}
           paintingChangeCheck={isEditing && paintingChangeCheck}
         />
-        {/* <Painting
-          selectedImage={selectedDiary && selectedDiary.image}
-          canvasRef={canvasRef}
-          musicModalOnOff={musicModalOnOff}
-          paintingChangeCheck={isEditing && paintingChangeCheck}
-          isEditing={isEditing}
-        /> */}
         <Text
           setDiaryText={setDiaryText}
           defaultValue={selectedDiary && selectedDiary.text}

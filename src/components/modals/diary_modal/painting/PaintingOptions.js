@@ -21,7 +21,10 @@ const PaintingOptions = ({
   fill,
   lineWidth,
   setLineWidth,
+  loadImg,
 }) => {
+  const fileRef = React.useRef(null);
+
   const selectButtonFunc = (iconName) => {
     switch (iconName) {
       case "paint-brush":
@@ -33,9 +36,6 @@ const PaintingOptions = ({
       case "eraser":
         erase();
         break;
-      case "image":
-        console.log("image");
-        break;
       case "sticky-note":
         eraseAll("white");
       default:
@@ -43,16 +43,40 @@ const PaintingOptions = ({
     }
   };
 
+  const handleFileButtonClick = (e) => {
+    //파일업로드 버튼
+    e.preventDefault();
+    fileRef.current.click(); // file 불러오는 버튼을 대신 클릭함
+  };
+
   return (
     <StyledPaintingButtonWrapper>
-      {optionBtn.map((btn) => (
-        <StyledPaintingButton
-          key={uniqueId()}
-          onClick={() => selectButtonFunc(btn.iconName)}
-        >
-          <FontAwesomeIcon icon={btn} size={10} />
-        </StyledPaintingButton>
-      ))}
+      {optionBtn.map((btn) =>
+        btn.iconName === "image" ? (
+          <>
+            <StyledPaintingButton
+              key={uniqueId()}
+              onClick={(e) => handleFileButtonClick(e)}
+            >
+              <FontAwesomeIcon icon={btn} size={10} />
+            </StyledPaintingButton>
+            <StyledFileInput
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              id="input_file"
+              onChange={(e) => loadImg(e)}
+            />
+          </>
+        ) : (
+          <StyledPaintingButton
+            key={uniqueId()}
+            onClick={() => selectButtonFunc(btn.iconName)}
+          >
+            <FontAwesomeIcon icon={btn} size={10} />
+          </StyledPaintingButton>
+        )
+      )}
       <input
         type="range"
         min="1"
@@ -87,4 +111,12 @@ const StyledPaintingButton = styled.button`
   & svg {
     font-size: 2rem;
   }
+`;
+
+const StyledFileInput = styled.input`
+  display: none;
+`;
+
+const StyledFileLabel = styled.label`
+  width: 100%;
 `;
